@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Talent Portal SignUp{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 card border-0 shadow text-center">
+            {% if user.is_authenticated %}
+            <div class="alert fw-bolder bg-info">
+                <p>You are already authenticated</p>
+            </div>
+            {% else %}
+                <form method="post" class="mt-4 mb-4">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">SignUp</button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
