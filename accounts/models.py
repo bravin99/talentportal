@@ -10,11 +10,10 @@ class AccountBaseModel(models.Model):
     updated = models.DateTimeField(auto_now=True)
     
 EDU_CHOICES = (
-    (1, "Certificate"),
-    (2, "Diploma"),
-    (3, "Degree"),
-    (4, "Masters"),
-    (5, "Masters & MBA")
+    ("cert", "Certificate"),
+    ("dip", "Diploma"),
+    ("deg", "Degree"),
+    ("mas", "Masters")
 )
 
 class Profile(AccountBaseModel):
@@ -23,7 +22,7 @@ class Profile(AccountBaseModel):
     phone_number = models.CharField(max_length=100)
     alternative_email = models.EmailField()
     registered_id = models.CharField(max_length=15, verbose_name="ID/Alien Number")
-    education = models.TextField(max_length=20, choices=EDU_CHOICES, default=1)
+    education = models.CharField(max_length=20, choices=EDU_CHOICES, default="cert")
     experience = models.CharField(max_length=10, help_text="put an acurate represantation of your experience")
     date_of_birth = models.DateTimeField(null=True, blank=True)
     town = models.CharField(max_length=65, null=True, blank=True)

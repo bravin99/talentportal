@@ -5,8 +5,13 @@ from django.utils.encoding import force_bytes, force_str
 from accounts.tokens import account_activation_token
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from accounts.forms import SignUpForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from accounts.models import Profile
+from accounts.forms import SignUpForm, UpdateUserForm, ProfileForm
 import six
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -49,3 +54,25 @@ def activate(request, uidb64, token):
         return redirect("/")
     else:
         return render(request, 'registration/account_activation_invalid.html')
+
+
+@login_required
+def profile(request):
+    user = get_object_or_404(User, username=request.user.username)
+    user_profile = get_object_or_404(Profile, user__username=user.username)
+
+    if request.method == 'POST':
+        update_user_form = UpdateUserForm(request.POST, request.FILES, instance=user)
+        update_profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
+        if update_user_form.is_valid() and update_profile_form.is_valid():
+            update_user_form.save()
+            update_profile_form.save()
+    else:
+        update_user_form = UpdateUserForm(instance=user)
+        update_profile_form = ProfileForm(instance=user_profile)
+
+    context = {
+        'profile_form': update_profile_form,
+        'user_form': update_user_form
+        }
+    return render(request, "accounts/profile.html", context)
