@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Jobs page{% endblock %}
+{% load humanize %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h4 class="mt-3">Open Opportunities</h4>
+        <div class="col-sm-12">
+            <div class="card shadow border-start-0">
+                <div class="card-body">
+                    <p><em class="bi bi-check text-success me-2"></em> <small>Are you a highly experienced talented and looking for a challenging role where 
+                        you can learn lots more and work on exciting projects in a great working environment?</small></p>
+                    <p><em class="bi bi-check text-success me-2"></em> <small>If you are passionate about technology, constantly seeking to learn and improve 
+                        skillset, then you are the type of the person we are looking for! </small></p>
+                    <p><em class="bi bi-check text-success me-2"></em> <small>We are offering superb career growth opportunities, great compensation and benefits. </small></p>
+                    <p><em class="bi bi-check text-success me-2"></em> <small>We are always on the lookout for developers that possesses a passion for pushing 
+                        technologies to the limits. You will work with our team of talented engineers to design and build the next generation of our mobile applications.</small></p>
+                    <p><em class="bi bi-check text-success me-2"></em> <small>Click on jobs listed below to start your journey with us.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job list -->
+    <div class="row mt-4 border-top">
+        {% if jobs %}
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for job in jobs %}
+            <div class="col g-3">
+                <div class="card shadow h-100">
+                    <div class="card-body">
+                        <h4 class="card-title">{{job.title|title}}</h4>
+                        <div>
+                            <small><em class="bi bi-people-fill text-success"></em> <span>{{job.positions}}</span></small> &nbsp;
+                            <small><em class="bi bi-cash-coin text-primary"></em> <span>{{job.salary|intcomma}}</span></small> &nbsp;
+                            <small><em class="bi bi-briefcase-fill text-secondary"></em> <span>{{job.contract_type|lower}}</span></small> &nbsp;
+                            <small><em class="badge bg-primary">{{job.job_type}}</em></small>
+                        </div>
+                        <small class="card-text">{{job.description|truncatewords:30}}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="alert alert-info mt-3">
+                <p class="fw-bolder text-center">No jobs found, We will keep you updated</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

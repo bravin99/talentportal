@@ -4,5 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from jobs.models import Job, Application
 
-class Jobs(LoginRequiredMixin, ListView):
+class JobsListView(LoginRequiredMixin, ListView):
     queryset = Job.objects.filter(is_open=True)
+    context_object_name = "jobs"
+    template_name = "jobs/jobs.html"

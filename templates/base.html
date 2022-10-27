@@ -27,7 +27,9 @@
                         <em class="bi bi-briefcase-fill me-2 text-primary"></em><span>Jobs</span> <em class="bi bi-caret-down ms-2"></em>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><em class="bi bi-briefcase-fill me-2 text-primary"></em> Jobs</a></li>
+                        <li><a class="dropdown-item" href="{% url 'jobs' %}">
+                            <em class="bi bi-briefcase-fill me-2 text-primary"></em> Jobs</a>
+                        </li>
                         <li><a class="dropdown-item" href="#">
                             <em class="bi bi-send-check-fill me-2 text-success"></em> My Applications</a>
                         </li>
@@ -47,7 +49,7 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#"><h3 class="ms-3 text-uppercase fw-bolder">Talent Portal</h3></a>
+                <a class="navbar-brand" href="{% url 'dashboard' %}"><h3 class="ms-3 text-uppercase fw-bolder">Talent Portal</h3></a>
                 <!-- Right links -->
                 <ul class="navbar-nav ms-auto d-flex flex-row">
                 <!-- Icon -->

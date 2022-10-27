@@ -10,3 +10,9 @@ Django
 django-crispy-forms
 six
 ```
+
+## Design
+
+### Job Page
+
+![Job listing page](/static/img/jobpage.png)
