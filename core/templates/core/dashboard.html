@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Talent Portal Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h4 class="mt-2">My Dashboard</h4>
+    <div class="row row-cols-1 row-cols-md-4">
+        <div class="col shadow">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Education</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col shadow">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Experience</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col shadow">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Documents</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col shadow">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Referees</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-sm-4 shadow border-end">
+            <h5>Recent Applications</h5>
+            applications list    
+        </div>
+        <div class="col-sm-7 shadow">
+            <h3 class="border-bottom fw-bolder">Updates</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}
