@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -8,6 +9,8 @@ class JobsModelsBase(models.Model):
 
 class Job(JobsModelsBase):
     title = models.CharField(max_length=155)
+    positions = models.IntegerField(default=1)
+    salary = models.DecimalField(decimal_places=2, max_digits=7, null=True, blank=True)
     description = models.TextField()
     requirements = models.TextField()
     apply_by = models.DateTimeField()
