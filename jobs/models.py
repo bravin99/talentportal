@@ -9,6 +9,8 @@ class JobsModelsBase(models.Model):
 
 class Job(JobsModelsBase):
     title = models.CharField(max_length=155)
+    job_type = models.CharField(max_length=35, null=True, blank=True, help_text="e.g internship, entry level, ...")
+    contract_type = models.CharField(max_length=35, help_text="e.g temporary, full time, ...")
     positions = models.IntegerField(default=1)
     salary = models.DecimalField(decimal_places=2, max_digits=7, null=True, blank=True)
     description = models.TextField()
