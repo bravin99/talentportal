@@ -17,7 +17,8 @@ class Application(JobsModelsBase):
     STATUS_CHOICES = (
         ('ap', 'Applied'),
         ('si', 'Scheduled Interview'),
-        ('hi', 'Hired')
+        ('hi', 'Hired'),
+        ('dp', 'dropped')
     )
     applicant = models.ForeignKey(User, related_name="application", on_delete=models.CASCADE)
     parent_job = models.ForeignKey(Job, on_delete=models.CASCADE)
