@@ -1,6 +1,8 @@
 from email.policy import default
 from django.db import models
 from django.contrib.auth import get_user_model
+from datetime import datetime
+
 User = get_user_model()
 
 class JobsModelsBase(models.Model):
@@ -16,7 +18,7 @@ class Job(JobsModelsBase):
     description = models.TextField()
     requirements = models.TextField()
     apply_by = models.DateTimeField()
-
+    is_open = models.BooleanField(default=True)        
 
 class Application(JobsModelsBase):
     STATUS_CHOICES = (
