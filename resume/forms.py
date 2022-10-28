@@ -8,11 +8,19 @@ class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         exclude = ['user', 'created', 'updated']
+        widgets = {
+            'from_date': DateInput(),
+            'to_date': DateInput()
+        }
 
 class ExperienceForm(forms.ModelForm):
     class Meta:
         model = Experience
         exclude = ['user', 'created', 'updated']
+        widgets = {
+            'from_date': DateInput(),
+            'to_date': DateInput()
+        }
 
 class RefereeForm(forms.ModelForm):
     class Meta:
