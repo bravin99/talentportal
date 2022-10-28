@@ -1,5 +1,3 @@
-from random import choices
-from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -15,7 +13,7 @@ class Education(ResumeBaseModel):
     to_date = models.DateField(verbose_name="To")
     institution_name = models.CharField(max_length=100)
     course = models.CharField(max_length=155)
-    enrolled = models.BooleanField(help_text="Are you still attending for classes ?")
+    enrolled = models.BooleanField(default=False, help_text="Are you still attending for classes ?")
     grade = models.CharField(max_length=35)
     your_achievements = models.TextField()
 
@@ -27,6 +25,7 @@ class Experience(ResumeBaseModel):
     position = models.CharField(max_length=40, help_text="Job title")
     salary = models.DecimalField(decimal_places=2, max_digits=9, verbose_name="Salary (Ksh)")
     description = models.TextField(verbose_name="Brief description of your roles")
+    in_role = models.BooleanField(default=False, verbose_name="Are you still working here ?")
     why_left = models.TextField(verbose_name="Reasons for leaving")
 
 class Referee(ResumeBaseModel):
@@ -35,6 +34,7 @@ class Referee(ResumeBaseModel):
     organization_name = models.CharField(max_length=155)
     phone = models.CharField(max_length=15)
     email = models.EmailField(null=True, blank=True)
+    call = models.BooleanField(default=True, verbose_name="Available for call ?")
 
 def document_upload_path(instance, filename):
     return f'application-docs/{instance.user.username}/{filename}'
