@@ -40,11 +40,11 @@ def document_upload_path(instance, filename):
     return f'application-docs/{instance.user.username}/{filename}'
 class Document(ResumeBaseModel):
     DOC_TYPES = (
-        ('resume', 'Resuee'),
+        ('resume', 'Resume'),
         ('cv', 'Curriculum Vitae'),
-        ('Academic Certificates')
+        ('Academic', 'Certificates')
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="documents")
-    doc_type = models.CharField(choices=DOC_TYPES, default='resume', verbose_name="Document Type")
+    doc_type = models.CharField(max_length=20, choices=DOC_TYPES, default='resume', verbose_name="Document Type")
     doc_name = models.CharField(max_length=40, verbose_name="Document Name")
-    file = models.FileField(upload_to=document_upload_path, versose_name="Document(PDF)")
+    file = models.FileField(upload_to=document_upload_path, verbose_name="Document(PDF)")
