@@ -26,7 +26,7 @@ class MyDetailsView(LoginRequiredMixin, TemplateView):
         education_form = EducationForm(request.POST)
         experience_form = ExperienceForm(request.POST)
         referee_form = RefereeForm(request.POST)
-        document_form = DocumentForm(request.POST)
+        document_form = DocumentForm(request.POST, request.FILES)
 
         user = request.user
 

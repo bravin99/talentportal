@@ -31,3 +31,10 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
         exclude = ['user', 'created', 'updated']
+        widgets = {
+            'file': forms.ClearableFileInput(
+                attrs={
+                    'multiple': True
+                }
+            ),
+        }
