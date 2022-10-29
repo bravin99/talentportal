@@ -16,3 +16,7 @@ six
 ### Job Page
 
 ![Job listing page](/static/img/jobpage.png)
+
+### Resume page
+
+![Resume page: education](/static/img/resume-education.png)

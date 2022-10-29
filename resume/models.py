@@ -17,6 +17,9 @@ class Education(ResumeBaseModel):
     grade = models.CharField(max_length=35)
     your_achievements = models.TextField()
 
+    class Meta:
+        ordering = ['-to_date']
+
 class Experience(ResumeBaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="experience")
     from_date = models.DateField(verbose_name="From")
@@ -27,6 +30,9 @@ class Experience(ResumeBaseModel):
     description = models.TextField(verbose_name="Brief description of your roles")
     in_role = models.BooleanField(default=False, verbose_name="Are you still working here ?")
     why_left = models.TextField(verbose_name="Reasons for leaving")
+
+    class Meta:
+        ordering = ['-to_date']
 
 class Referee(ResumeBaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="referees")
