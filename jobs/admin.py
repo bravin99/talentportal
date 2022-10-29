@@ -6,6 +6,7 @@ class JobAdmin(admin.ModelAdmin):
     list_display = ['title', 'apply_by', 'created', 'updated']
     list_filter = ['apply_by',]
     search_fields = ['title', 'requirements']
+    # prepopulated_fields = {'slug': ['title'],}
 
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):

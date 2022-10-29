@@ -31,7 +31,7 @@
             <div class="col g-3">
                 <div class="card shadow h-100">
                     <div class="card-body">
-                        <h4 class="card-title">{{job.title|title}}</h4>
+                        <h4 class="card-title"><a href="{% url 'job-detail' job.slug %}" class="text-decoration-none"> {{job.title|title}} </a> </h4>
                         <div>
                             <small><em class="bi bi-people-fill text-success"></em> <span>{{job.positions}}</span></small> &nbsp;
                             <small><em class="bi bi-cash-coin text-primary"></em> <span>{{job.salary|intcomma}}</span></small> &nbsp;
