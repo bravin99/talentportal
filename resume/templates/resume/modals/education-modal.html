@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+{% load humanize %}
 <div class="row mt-3">
     <div class="form-group">
         <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#add-education">
@@ -27,4 +28,26 @@
         </div>
     </div>
     <!-- end add education modal -->
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-7 offset-sm-1">
+        <ul class="timeline">
+            {% for ed in c_user.education.all %}
+            <li>
+                <div class="d-flex justify-content-between">
+                    <span class="display-6 fw-normal">{{ed.institution_name}}</span>
+                    <span class="badge text-bg-success text-between"> {{ed.to_date|naturalday}} </span>
+                </div>
+                <p class="mt-2">
+                    {{ed.your_achievements}}
+                </p>
+            </li>
+            {% empty %}
+            <div class="alert bg-danger">
+                <span class="fw-bolder">No education has been added</span>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
