@@ -3,6 +3,40 @@
 
 {% block title %}My Details{% endblock %}
 {% load humanize %}
+{% block extra_head %}
+<style>
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+    ul.timeline:before {
+        content: ' ';
+        background: #d4d9df;
+        display: inline-block;
+        position: absolute;
+        left: 29px;
+        width: 2px;
+        height: 100%;
+        z-index: 400;
+    }
+    ul.timeline > li {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+    ul.timeline > li:before {
+        content: ' ';
+        background: white;
+        display: inline-block;
+        position: absolute;
+        border-radius: 50%;
+        border: 3px solid #22c0e8;
+        left: 20px;
+        width: 20px;
+        height: 20px;
+        z-index: 400;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
 <div class="container mt-5 mb-5">
@@ -31,6 +65,27 @@
             <!-- Education section -->
             <div class="tab-pane fade show active" id="Education">
                 {% include 'resume/modals/education-modal.html' %}
+                <div class="row mt-3">
+                    <div class="col-md-7 offset-sm-1">
+                        <ul class="timeline">
+                            {% for ed in c_user.education.all %}
+                            <li>
+                                <div class="d-flex justify-content-between">
+                                    <span class="display-6 fw-normal">{{ed.institution_name}}</span>
+                                    <span class="badge text-bg-success text-between"> {{ed.to_date|naturalday}} </span>
+                                </div>
+                                <p class="mt-2">
+                                    {{ed.your_achievements}}
+                                </p>
+                            </li>
+                            {% empty %}
+                            <div class="alert bg-danger">
+                                <span class="fw-bolder">No education has been added</span>
+                            </div>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
 
             </div>
 

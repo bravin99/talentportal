@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -33,15 +33,19 @@ class MyDetailsView(LoginRequiredMixin, TemplateView):
         if education_form.is_bound and education_form.is_valid():
             education_form.instance.user = user
             education_form.save()
+            return HttpResponseRedirect(self.request.get_full_path())
         elif experience_form.is_bound and experience_form.is_valid():
             experience_form.instance.user = user
             experience_form.save()
+            return HttpResponseRedirect(self.request.get_full_path())
         elif referee_form.is_bound and referee_form.is_valid():
             referee_form.instance.user = user 
             referee_form.save()
+            return HttpResponseRedirect(self.request.get_full_path())
         elif document_form.is_bound and document_form.is_valid():
             document_form.instance.user = user
             document_form.save()
+            return HttpResponseRedirect(self.request.get_full_path())
 
         return self.render_to_response({
             'education_form': education_form, 
