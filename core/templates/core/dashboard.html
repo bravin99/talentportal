@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load humanize %}
 
 {% block title %}Dashboard{% endblock %}
 
@@ -10,16 +11,26 @@
         <div class="col shadow g-2">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <em class="bi bi-mortarboard-fill text-success"></em> &nbsp; Education</h5>
+                    <h5 class="card-title text-center">
+                        <em class="bi bi-mortarboard-fill text-success"></em>
+                        &nbsp;
+                        <small>Education</small>
+                        {% if user.education.all %}
+                        <small class="text-center">({{user.education.all.count}})</small>
+                        {% endif %}
+                    </h5>
                 </div>
             </div>
         </div>
         <div class="col shadow g-2">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <em class="bi bi-life-preserver text-danger"></em> &nbsp; Experience
+                    <h5 class="card-title text-center">
+                        <em class="bi bi-life-preserver text-danger"></em> &nbsp;
+                        <small>Experience</small>
+                        {% if user.experience.all %}
+                            <small> ({{user.experience.count}}) </small>
+                        {% endif %}
                     </h5>
                 </div>
             </div>
@@ -28,7 +39,12 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <em class="bi bi-file-earmark-check text-info"></em>&nbsp; Documents</h5>
+                        <em class="bi bi-file-earmark-check text-info"></em>&nbsp;
+                        <small>Documents</small>
+                        {% if user.documents.all %}
+                            <small>({{user.documents.all.count}})</small>
+                        {% endif %}
+                    </h5>
                 </div>
             </div>
         </div>
@@ -36,7 +52,11 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <em class="bi bi-people-fill text-primary"></em>&nbsp; Referees
+                        <em class="bi bi-people-fill text-primary"></em>&nbsp;
+                        <small>Referees</small>
+                        {% if user.referees.all %}
+                            <small>({{user.referees.all.count}})</small>
+                        {% endif %}
                     </h5>
                 </div>
             </div>
@@ -46,10 +66,26 @@
     <div class="row mt-5">
         <div class="col-sm-5 shadow border-end g-2">
             <h5 class="mt-1">Recent Applications</h5>
-            applications list    
+                <ul class="mt-4 list-group">
+                    {% for app in recent_applications %}
+                        <li class="border-0 border-top list-group-item">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <a href="{% url 'my-applications' %}" class="text-decoration-none">{{app.parent_job.title}}</a>
+                                </div>
+                                {{app.created|naturaltime}}
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li>No recent applications</li>
+                    {% endfor %}
+                </ul> 
         </div>
         <div class="col-sm-6 shadow g-3">
             <h3 class="border-bottom fw-bolder mt-1">Updates</h3>
+            <p class="mt-3">
+                You have no updates 
+            </p>
         </div>
     </div>
 </div>

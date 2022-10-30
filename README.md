@@ -8,7 +8,7 @@ A simplified implementation of a recruitment portal.
 
 ## Running
 
-1. git clone [https://github.com/bravin99/talentportal.git](https://github.com/bravin99/talentportal.git)
+1. ``` git clone [https://github.com/bravin99/talentportal.git](https://github.com/bravin99/talentportal.git) ```
 2. ``` cd talentportal ```
 3. ``` python -m venv venv ```
 4. ``` source venv/bin/activate ```
