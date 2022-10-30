@@ -23,6 +23,10 @@ A simplified implementation of a recruitment portal.
 
 ## Design
 
+### Dashboard
+
+![Dashboard](/static/img/dashboard.png)
+
 ### Job App
 
 ![Job listing page](/static/img/jobpage.png)
