@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}My Applications{% endblock %}
+{% load humanize %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h4 class="text-capitalize mt-3">My Applications</h4>
+        <div class="mt-5 shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Town</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in applications %}
+                        <tr>
+                            <th scope="row"> {{app.parent_job.title}} </th>
+                            <td class="text-lowercase"> {{app.parent_job.job_type}}|{{app.parent_job.contract_type}} </td>
+                            <td> {{app.applicant.profile.town}} </td>
+                            <td> <small class="btn btn-info btn-sm">{{app.get_status_display}}</small></td>
+                            <td> {{app.created|naturalday}} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

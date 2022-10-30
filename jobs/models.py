@@ -41,3 +41,6 @@ class Application(JobsModelsBase):
     applicant = models.ForeignKey(User, related_name="application", on_delete=models.CASCADE)
     parent_job = models.ForeignKey(Job, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="ap")
+
+    class Meta:
+        ordering = ['-created']

@@ -29,6 +29,21 @@
             {{job.requirements|safe}}
             {% endif %}
 
+            <div class="mt-4 mb-3">
+                {% if is_applied == None %}
+                    <div>
+                        <form class="form-group" method="post" id="apply_form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-lg">Apply Now</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary disabled">Already applied</button>
+                    </div>
+                {% endif %}
+            </div>
+
             {% if job.is_open %}
             <div class="alert bg-info mt-4">
                 <p class="fw-bolder">Apply before {{job.apply_by|naturalday}} </p>
